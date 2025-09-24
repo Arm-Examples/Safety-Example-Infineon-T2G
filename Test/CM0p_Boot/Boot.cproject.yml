@@ -1,0 +1,33 @@
+project:
+  description: Boot application running on Cortex-M0+ core (starts CM7 core 0 and CM7 core 1)
+
+  # List of packs used in the project.
+  packs:
+    - pack: ARM::CMSIS@^6.2.0
+
+  # List of connections required or provided by the project.
+  connections:
+    - connect: Boot
+      consumes:
+        - CMSIS_VIO
+
+  # List of source groups and files.
+  groups:
+    - group: Documentation
+      files:
+        - file: README.md
+    - group: Source Files
+      files:
+        - file: app_main.c
+
+  # List of layers.
+  layers:
+    - layer: $SolutionDir()$/Board/KIT_T2G-B-H_LITE/Cortex-M0p/Board.clayer.yml
+      type: Board
+
+  # List of executable file formats to be generated.
+  output:
+    type:
+      - elf
+      - hex
+      - map

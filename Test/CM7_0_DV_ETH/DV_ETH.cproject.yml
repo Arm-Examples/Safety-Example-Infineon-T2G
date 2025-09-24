@@ -1,0 +1,37 @@
+project:
+  description: Ethernet Driver Validation running on Cortex-M7 core 0
+
+  # List of packs used in the project.
+  packs:
+    - pack: ARM::CMSIS@^6.2.0
+    - pack: ARM::CMSIS-Compiler@^2.1.0
+    - pack: ARM::CMSIS-Driver_Validation@^3.0.0
+    - pack: ARM::CMSIS-RTX@^5.9.0
+    - pack: ARM::CMSIS-View@^1.2.0
+
+  # List of connections required or provided by the project.
+  connections:
+    - connect: Ethernet Driver Validation
+      provides:
+        - CMSIS-RTOS2
+      consumes:
+        - CMSIS_ETH
+        - STDOUT
+
+  # List of source groups and files.
+  groups:
+    - group: Documentation
+      files:
+        - file: README.md
+
+  # List of layers.
+  layers:
+    - layer: $SolutionDir()$/Board/KIT_T2G-B-H_LITE/Cortex-M7-0/Board.clayer.yml
+      type: Board
+
+  # List of executable file formats to be generated.
+  output:
+    type:
+      - elf
+      - hex
+      - map

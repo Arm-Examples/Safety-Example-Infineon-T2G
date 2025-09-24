@@ -1,0 +1,60 @@
+solution:
+  description: Driver Validation
+  created-for: CMSIS-Toolbox@2.11.0
+  cdefault:
+
+  # List of tested compilers that can be selected
+  select-compiler:
+    - compiler: AC6
+
+  # Selected compiler
+  compiler: AC6
+
+  # List of miscellaneous tool-specific controls
+  misc:
+    - for-compiler: AC6 # GDB requires DWARF 5, remove when using uVision Debugger
+      C-CPP:
+        - -gdwarf-5
+      ASM:
+        - -gdwarf-5
+
+  # List different hardware targets that are used to deploy the solution.
+  target-types:
+    - type: T2G-Kit
+      board: KIT_T2G-B-H_LITE:V1
+      device: CYT4BF8CDS
+      target-set:
+        - set:
+          images:
+            - project-context: Boot.Debug
+            - project-context: DV_ETH.Debug
+          debugger:
+            name: KitProg3@pyOCD
+            port: 3333
+            protocol: swd
+            clock: 10000000
+
+        - set: Release
+          images:
+            - project-context: Boot.Release
+            - project-context: DV_ETH.Release
+          debugger:
+            name: KitProg3@pyOCD
+            port: 3333
+            protocol: swd
+            clock: 10000000
+
+  # List of different build configurations.
+  build-types:
+    - type: Debug
+      debug: on
+      optimize: debug
+
+    - type: Release
+      debug: off
+      optimize: balanced
+
+  # List related projects.
+  projects:
+    - project: CM0p_Boot/Boot.cproject.yml
+    - project: CM7_0_DV_ETH/DV_ETH.cproject.yml

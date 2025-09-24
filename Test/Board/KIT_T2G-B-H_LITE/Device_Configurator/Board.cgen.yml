@@ -1,0 +1,17 @@
+generator-import: 
+  generated-by: 'Infineon Device configurator' 
+  groups: 
+  - group: ConfigTools 
+    files: 
+    - file: GeneratedSource/cycfg.c 
+    - file: GeneratedSource/cycfg_clocks.c 
+    - file: GeneratedSource/cycfg_peripherals.c 
+    - file: GeneratedSource/cycfg_pins.c 
+    - file: GeneratedSource/cycfg_system.c 
+    - file: GeneratedSource/cycfg.h 
+    - file: GeneratedSource/cycfg_clocks.h 
+    - file: GeneratedSource/cycfg_notices.h 
+    - file: GeneratedSource/cycfg_peripherals.h 
+    - file: GeneratedSource/cycfg_pins.h 
+    - file: GeneratedSource/cycfg_routing.h 
+    - file: GeneratedSource/cycfg_system.h 

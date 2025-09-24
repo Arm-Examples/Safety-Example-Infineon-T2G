@@ -30,11 +30,11 @@ The [App/T2G.csolution.yml](./App/T2G.csolution.yml) safety example uses three p
 
 The safety-critical application part [CM7_0_TrafficLight](./App/CM7_0_TrafficLight/TrafficLight.cproject.yml) uses safety classes to protect safe-mode operation. A web interface allows you to inject faults for testing the system recovery features. This part of the example is based on the application note [KAN336 - TrafficLight: Arm FuSa RTS process isolation example](https://developer.arm.com/documentation/kan336/latest).
 
-### Test/Ethernet/DriverTest
+### Test/CM7_0_DV_ETH
 
 The Infineon DFP/BSP software packs do not contain a [CMSIS-Driver Ethernet](https://arm-software.github.io/CMSIS_6/latest/Driver/group__eth__interface__gr.html) or [board software layers](https://open-cmsis-pack.github.io/cmsis-toolbox/ReferenceApplications/#board-layer). These components are therefore developed separately and provided in this repository.
 
-The [Test/Ethernet/DriverTest.csolution.yml](./Test/Ethernet/DriverTest.csolution.yml) validates the CMSIS-Driver Ethernet with the [CMSIS-Driver_Validation](https://github.com/ARM-software/CMSIS-Driver_Validation) pack.
+The [Test/CM7_0_DV_ETH/DV_ETH.cproject.yml](./Test/CM7_0_DV_ETH/DV_ETH.cproject.yml) validates the CMSIS-Driver Ethernet with the [CMSIS-Driver_Validation](https://github.com/ARM-software/CMSIS-Driver_Validation) pack.
 
 ## Git Workflow
 
@@ -60,7 +60,7 @@ File/Directory                            | Content
 [vcpkg-configuration.json](./vcpkg-configuration.json) | Defines the tools that the [Arm Tools Environment Manager](https://marketplace.visualstudio.com/items?itemName=Arm.environment-manager) installs in VS Code.
 [App](./App)                              | [App/T2G](#appt2g) contains the safety example.
 [Doc](./Doc)                              | Documentation files.
-[Test/Ethernet](./Test/Ethernet)          | [Test/Ethernet/DriverTest](#testethernetdrivertest) contains the validation for the CMSIS-Driver Ethernet.
+[Test/CM7_0_DV_ETH](./Test/CM7_0_DV_ETH)  | [Test/CM7_0_DV_ETH](#testcm7_0_dv_eth) contains the validation for the CMSIS-Driver Ethernet.
 [.ci](./.ci)                              | Contains setup for the CI test workflows.
 
 ## Webinar

@@ -1,0 +1,57 @@
+layer:
+  type: Board
+  description: KIT_T2G-B-H_LITE board setup (CM7-1)
+  for-board: Infineon::KIT_T2G-B-H_LITE
+
+  device: :Cortex-M7-1
+
+  generators:
+    options:
+      - generator: InfineonDeviceConfigurator
+        path: ../Device_Configurator
+        name: Board
+
+  packs:
+    - pack: Infineon::T2G-B-H_DFP@^1.2.0
+    - pack: Infineon::KIT_T2G-B-H_LITE_BSP@^1.1.0
+    - pack: ARM::CMSIS@^6.2.0
+    - pack: ARM::CMSIS-Compiler@^2.1.0
+
+  components:
+    - component: Infineon::Device:Startup
+    - component: Infineon::Device:Peripheral Driver Library:PDL
+    - component: Infineon::Board Support&KIT_T2G-B-H_LITE:Board Setup
+    - component: Infineon::Device Configurator:Device Configurator
+
+    - component: CMSIS:CORE
+
+    - component: CMSIS-Compiler:CORE
+    - component: CMSIS-Compiler:STDERR:Custom
+    - component: CMSIS-Compiler:STDOUT:Custom
+    - component: CMSIS-Compiler:STDIN:Custom
+
+    - component: CMSIS Driver:Ethernet MAC:Custom
+    - component: CMSIS Driver:Ethernet PHY:Custom
+
+    - component: CMSIS Driver:VIO:Custom
+
+  groups:
+    - group: Board
+      files:
+        - file: main.c
+        - file: ../retarget_stdio.c
+        - file: ../PHY_DP83825I.c
+        - file: ../EMAC_T2G.c
+        - file: ../vio_KIT_T2G-B-H_LITE.c
+
+  add-path:
+    - ./
+    - ../
+    - ../Device_Configurator/GeneratedSource
+
+  define:
+    - CORE_NAME_CM7_1
+
+  linker:
+    - script: RTE/Device/CYT4BF8CDS_Cortex-M7-1/xmc7200d_x8384_cm7_1.sct
+      for-compiler: AC6
