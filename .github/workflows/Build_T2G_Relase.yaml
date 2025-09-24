@@ -28,8 +28,8 @@ on:
   
 jobs:
   CI:
-    strategy:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -42,6 +42,12 @@ jobs:
 
     - name: Activate Arm tool license
       uses: ARM-software/cmsis-actions/armlm@v1
+
+    - name: Cache downloaded packs
+      uses: actions/cache@v4
+      with:
+        key: T2G-Kit
+        path: /home/runner/.cache/arm/packs/.Download
 
     - name: Build for target-set T2G-Kit@Release with AC6 Compiler
       working-directory: ./App
