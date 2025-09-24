@@ -57,7 +57,7 @@ jobs:
     - name: AC6 Build-Test for context T2G.Release+T2G-Kit
       working-directory: ./App
       run: |
-        cbuild T2G.csolution.yml --context .Release+T2G-Kit --toolchain AC6 --packs
+        cbuild T2G.csolution.yml --context .Release+T2G-Kit --packs
 
     - name: Upload output for context T2G.Release+T2G-Kit
       uses: actions/upload-artifact@v4
