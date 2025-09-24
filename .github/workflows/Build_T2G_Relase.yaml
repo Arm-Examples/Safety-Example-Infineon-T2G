@@ -29,12 +29,8 @@ on:
 jobs:
   CI:
     strategy:
-      fail-fast: false
-
     runs-on: ubuntu-latest
-
     steps:
-
     - name: Checkout repository
       uses: actions/checkout@v4
 
@@ -42,15 +38,15 @@ jobs:
       uses: ARM-software/cmsis-actions/vcpkg@v1
       with:
         config: "./vcpkg-configuration.json"
-        cache: ""
+        cache: "T2G-Kit"
 
     - name: Activate Arm tool license
       uses: ARM-software/cmsis-actions/armlm@v1
 
-    - name: Run cbuild setup for AC6_T2G.csolution.yml
+    - name: Build for target-set T2G-Kit@Release with AC6 Compiler
       working-directory: ./App
       run: |
-        cbuild setup T2G.csolution.yml --active T2G-Kit@Release --packs
+        cbuild T2G.csolution.yml --active T2G-Kit@Release --packs
 
     - name: AC6 Build-Test for context T2G.Release+T2G-Kit
       working-directory: ./App
@@ -60,7 +56,7 @@ jobs:
     - name: Upload output for context T2G.Release+T2G-Kit
       uses: actions/upload-artifact@v4
       with:
-        name: AC6_build_T2G.Release+T2G-Kit
+        name: T2G-Kit@Release
         path: ./App/out
 
 
