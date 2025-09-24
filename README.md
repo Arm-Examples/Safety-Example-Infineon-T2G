@@ -1,4 +1,4 @@
-[![Algorithm Test ST/B-U585I-IOT02A](https://img.shields.io/github/actions/workflow/status/Arm-Examples/Safety-Example-Infineon-T2G/Build_T2G_Relase.yaml?logo=arm&logoColor=0091bd&label=Build_T2G_Relase)](./.github/workflows/Build_T2G_Relase.yaml)
+[![Build_T2G_Release](https://img.shields.io/github/actions/workflow/status/Arm-Examples/Safety-Example-Infineon-T2G/Build_T2G_Relase.yaml?logo=arm&logoColor=0091bd&label=Build_T2G_Release)](./.github/workflows/Build_T2G_Relase.yaml)
 
 # Safety Example for Infineon TRAVEO T2G Series
 
