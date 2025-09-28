@@ -14,7 +14,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-name: Build T2G Release
+name: Run T2G Release
 on:
 
   workflow_dispatch:
@@ -24,11 +24,10 @@ on:
   #  branches: [main]
   #schedule:
   #  - cron: '00 20 * * 6'
-
   
 jobs:
   CI:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - name: Checkout repository
@@ -38,7 +37,7 @@ jobs:
       uses: ARM-software/cmsis-actions/vcpkg@v1
       with:
         config: "./vcpkg-configuration.json"
-        cache: "T2G-Kit"
+    #    cache: "T2G-Kit"
 
     - name: Activate Arm tool license
       uses: ARM-software/cmsis-actions/armlm@v1
@@ -49,14 +48,24 @@ jobs:
         key: T2G-Kit
         path: /home/runner/.cache/arm/packs/.Download
 
-    - name: Build for target-set T2G-Kit@Release with AC6 Compiler
-      working-directory: ./App
+    - name: Add the Infineon.T2G-B-H_DFP
       run: |
-        cbuild T2G.csolution.yml --active T2G-Kit@Release --packs
+        cd ~
+        cpackget add -a -F ./PACK/.Download/Infineon.T2G-B-H_DFP.1.2.1.pack
+        cpackget list
 
-    - name: Upload output for context T2G.Release+T2G-Kit
-      uses: actions/upload-artifact@v4
+    - name: Download Build Artifact
+      uses: dawidd6/action-download-artifact@v2
       with:
+        workflow: Build_T2G_Release.yaml
         name: T2G-Kit@Release
-        path: |
-          ./App/out/
+        path: ./artifact/out
+
+    - name: Copy .cmsis folder
+      run: |
+        cp -r ./App/.cmsis/ ./artifact
+
+    - name: Flash-Download-Test for T2G-Kit@Release
+      working-directory: ./artifact/out
+      run: | 
+         python3 -m pyocd load --probe cmsisdap: --cbuild-run T2G+T2G-Kit.cbuild-run.yml
