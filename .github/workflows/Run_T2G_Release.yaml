@@ -31,7 +31,6 @@ jobs:
       uses: ARM-software/cmsis-actions/vcpkg@v1
       with:
         config: "./vcpkg-configuration.json"
-    #    cache: "T2G-Kit"
 
     - name: Activate Arm tool license
       uses: ARM-software/cmsis-actions/armlm@v1
@@ -46,18 +45,13 @@ jobs:
       run: |
         cd ~
         cpackget add -a -F ./PACK/.Download/Infineon.T2G-B-H_DFP.1.2.1.pack
-        cpackget list
 
     - name: Download Build Artifact
       uses: dawidd6/action-download-artifact@v2
       with:
         workflow: Build_T2G_Release.yaml
         name: T2G-Kit@Release
-        path: ./artifact/out
-
-    - name: Copy .cmsis folder
-      run: |
-        cp -r ./App/.cmsis/ ./artifact
+        path: ./artifact
 
     - name: Flash-Download-Test for T2G-Kit@Release
       working-directory: ./artifact/out
