@@ -32,17 +32,17 @@ jobs:
       with:
         config: "./vcpkg-configuration.json"
 
-    - name: Cache downloaded packs
-      uses: actions/cache@v4
-      with:
-        key: T2G-Kit
-        path: /home/runner/.cache/arm/packs/.Download
+    # - name: Cache downloaded packs
+    #  uses: actions/cache@v4
+    #  with:
+    #    key: T2G-Kit
+    #    path: /home/runner/.cache/arm/packs/.Download
 
     - name: Add the Infineon.T2G-B-H_DFP
       run: |
         cd ~
-        cpackget add -F ARM::CMSIS@6.2.0
-        cpackget add -F Infineon::T2G-B-H_DFP@1.2.1
+        cpackget add -F -a ARM::CMSIS@6.2.0
+        cpackget add -F -a Infineon::T2G-B-H_DFP@1.2.1
         # cpackget add -a -F ./PACK/.Download/Infineon.T2G-B-H_DFP.1.2.1.pack
 
     - name: Download Build Artifact
