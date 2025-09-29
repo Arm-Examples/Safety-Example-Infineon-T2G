@@ -32,9 +32,6 @@ jobs:
       with:
         config: "./vcpkg-configuration.json"
 
-    - name: Activate Arm tool license
-      uses: ARM-software/cmsis-actions/armlm@v1
-
     - name: Cache downloaded packs
       uses: actions/cache@v4
       with:
@@ -44,7 +41,9 @@ jobs:
     - name: Add the Infineon.T2G-B-H_DFP
       run: |
         cd ~
-        cpackget add -a -F ./PACK/.Download/Infineon.T2G-B-H_DFP.1.2.1.pack
+        cpackget add ARM::CMSIS@6.2.0
+        cpackget add Infineon::T2G-B-H_DFP@1.2.1
+        # cpackget add -a -F ./PACK/.Download/Infineon.T2G-B-H_DFP.1.2.1.pack
 
     - name: Download Build Artifact
       uses: dawidd6/action-download-artifact@v2
