@@ -60,3 +60,4 @@ jobs:
         name: T2G-Kit@Release
         path: |
           ./App/out/
+          ./App/.cmsis/
