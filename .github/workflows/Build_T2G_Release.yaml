@@ -16,16 +16,8 @@
 
 name: Build T2G Release
 on:
-
   workflow_dispatch:
-  #pull_request:
-  #  branches: [main]
-  #push:
-  #  branches: [main]
-  #schedule:
-  #  - cron: '00 20 * * 6'
 
-  
 jobs:
   CI:
     runs-on: ubuntu-latest
@@ -58,7 +50,8 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: T2G-Kit@Release
-        include-hidden-files: true
         path: |
           ./App/out/
           ./App/.cmsis/
+        include-hidden-files: true
+
