@@ -17,8 +17,8 @@
  *
  * -----------------------------------------------------------------------
  *
- * $Date:        25. May 2018
- * $Revision:    V0.0
+ * $Date:        8. September 2025
+ * $Revision:    V1.0
  *
  * Project:      Ethernet Physical Layer Transceiver (PHY)
  *               Definitions for DP83825I
@@ -38,26 +38,31 @@
 #define REG_ANLPAR          0x05        /* Auto-Neg. Link Partner Abitily    */
 #define REG_ANER            0x06        /* Auto-Neg. Expansion Register      */
 #define REG_ANNPTR          0x07        /* Auto-Neg. Next Page TX            */
+#define REG_ANLNPTR         0x08
+#define REG_CR1             0x09
+#define REG_CR2             0x0A
+#define REG_CR3             0x0B
+#define REG_12              0x0C
+#define REG_REGCR           0x0D
+#define REG_ADDAR           0x0E
+#define REG_FLDS            0x0F
 
 /* Extended Registers */
 #define REG_PHYSTS          0x10        /* Status Register                   */
-//#define REG_MICR            0x11        /* MII Interrupt Control Register    */
-//#define REG_MISR            0x12        /* MII Interrupt Status Register     */
-//#define REG_FCSCR           0x14        /* False Carrier Sense Counter       */
-//#define REG_RECR            0x15        /* Receive Error Counter             */
-//#define REG_PCSR            0x16        /* PCS Sublayer Config. and Status   */
-//#define REG_RBR             0x17        /* RMII and Bypass Register          */
-//#define REG_LEDCR           0x18        /* LED Direct Control Register       */
-//#define REG_PHYCR           0x19        /* PHY Control Register              */
-//#define REG_BTSCR           0x1A        /* 10Base-T Status/Control Register  */
-//#define REG_CDBR1           0x1B        /* CD Test Control and BIST Extens.  */
-//#define REG_EDCR            0x1D        /* Energy Detect Control Register    */
-
+#define REG_PHYSCR          0x11        /* Control Register                  */
+#define REG_MISR1           0x12
+#define REG_MISR2           0x13
+#define REG_FCSCR           0x14
+#define REG_RECR            0x15
+#define REG_BISCR           0x16
+#define REG_RCSR            0x17
+#define REG_LEDCR           0x18
+#define REG_PHYCR           0x19
+#define REG_BTSCR           0x1A
+#define REG_BICSR1          0x1B
+#define REG_BICSR2          0x1C
+#define REG_CDCR            0x1E
 #define REG_PHYRCR          0x1F
-
-#define PHYRCR_SOFTWARE_HARD_RESET 0x8000      /* Software Hard Reset                    */
-#define PHYRCR_DIGITAL_RESET       0x4000      /* Digital Reset                 */
-
 
 /* Basic Mode Control Register */
 #define BMCR_RESET          0x8000      /* Software Reset                    */
@@ -85,8 +90,8 @@
 #define BMSR_EXT_CAPAB      0x0001      /* Extended Capability               */
 
 /* PHY Identifier Registers */
-#define PHY_ID1             0x2000      /* DP83848C Device Identifier MSB    */
-#define PHY_ID2             0xA140      /* DP83848C Device Identifier LSB    */
+#define PHY_ID1             0x2000      /* DP83825I Device Identifier MSB    */
+#define PHY_ID2             0xA140      /* DP83825I Device Identifier LSB    */
 
 /* PHY Status Register */
 #define PHYSTS_MDI_X        0x4000      /* MDI-X mode enabled by Auto-Negot. */
@@ -105,91 +110,75 @@
 #define PHYSTS_SPEED        0x0002      /* Speed10 Status (1=10MBit/s)       */
 #define PHYSTS_LINK_STAT    0x0001      /* Link Status (1=established)       */
 
-/* MII Interrupt Control Register */
-#define MICR_TINT           0x0004      /* Test Interrupt                    */
-#define MICR_INTEN          0x0002      /* Interrupt Enable                  */
-#define MICR_INT_OE         0x0001      /* Interrupt Output Enable           */
+/* MII Interrupt Status Register 1 */
+#define MISR1_LQ_INT        0x8000      /* Link Quality Change Interrupt     */
+#define MISR1_ED_INT        0x4000      /* Energy Detect Change Interrupt    */
+#define MISR1_LINK_INT      0x2000      /* Link Status Change Interrupt      */
+#define MISR1_SPD_INT       0x1000      /* Speed Status Change Interrupt     */
+#define MISR1_DUP_INT       0x0800      /* Duplex Status Change Interrupt    */
+#define MISR1_ANC_INT       0x0400      /* Auto Negotiation Complete Interr. */
+#define MISR1_FHF_INT       0x0200      /* False Carrier Counter HF Interrupt*/
+#define MISR1_RHF_INT       0x0100      /* Receive Error Counter HF Interrupt*/
+#define MISR1_LQ_INT_EN     0x0080      /* Link Quality Change Int.Enable    */
+#define MISR1_ED_INT_EN     0x0040      /* Energy Detect Change Int.Enable   */
+#define MISR1_LINK_INT_EN   0x0020      /* Link Status Change Int.Enable     */
+#define MISR1_SPD_INT_EN    0x0010      /* Speed Status Change Int.Enable    */
+#define MISR1_DUP_INT_EN    0x0008      /* Duplex Status Change Int.Enable   */
+#define MISR1_ANC_INT_EN    0x0004      /* Auto Negotiation Complete Int.Ena.*/
+#define MISR1_FHF_INT_EN    0x0002      /* False Carrier Count.HF Int.Enable */
+#define MISR1_RHF_INT_EN    0x0001      /* Receive Error Count.HF Int.Enable */
 
-/* MII Interrupt Status Register */
-#define MISR_ED_INT         0x4000      /* Energy Detect Interrupt           */
-#define MISR_LINK_INT       0x2000      /* Link Status Change Interrupt      */
-#define MISR_SPD_INT        0x1000      /* Speed Status Change Interrupt     */
-#define MISR_DUP_INT        0x0800      /* Duplex Status Change Interrupt    */
-#define MISR_ANC_INT        0x0400      /* Auto Negotiation Complete Interr. */
-#define MISR_FHF_INT        0x0200      /* False Carrier Counter HF Interrupt*/
-#define MISR_RHF_INT        0x0100      /* Receive Error Counter HF Interrupt*/
-#define MISR_ED_INT_EN      0x0040      /* Endrgy Detect Int.Enable          */
-#define MISR_LINK_INT_EN    0x0020      /* Link Status Change Int.Enable     */
-#define MISR_SPD_INT_EN     0x0010      /* Speed Status Change Int.Enable    */
-#define MISR_DUP_INT_EN     0x0008      /* Duplex Status Change Int.Enable   */
-#define MISR_ANC_INT_EN     0x0004      /* Auto Negotiation Complete Int.Ena.*/
-#define MISR_FHF_INT_EN     0x0002      /* False Carrier Count.HF Int.Enable */
-#define MISR_RHF_INT_EN     0x0001      /* Receive Error Count.HF Int.Enable */
-
-/* 100Mb/s PCS Configuration and Status Register */
-#define PCSR_TQ_EN          0x0400      /* 100Mbs True Quiet Mode Enable     */
-#define PCSR_SD_FORCE_PMA   0x0200      /* Signal Detect Force PMA           */
-#define PCSR_SD_OPTION      0x0100      /* Signal Detect Option              */
-#define PCSR_DESC_TIME      0x0080      /* Descrambler Timeout               */
-#define PCSR_FORCE_100_OK   0x0020      /* Force 100Mb/s Good Link           */
-#define PCSR_NRZI_BYPASS    0x0004      /* NRZI Bypass Enable                */
-
-/* RMII and Bypass Register */
-#define RBR_RMII_MODE       0x0020      /* Reduced MII Mode                  */
-#define RBR_RMII_REV1_0     0x0010      /* Reduced MII Revision 1.0          */
-#define RBR_RX_OVF_STS      0x0008      /* RX FIFO Overflow Status           */
-#define RBR_RX_UNF_STS      0x0004      /* RX FIFO Underflow Status          */
-#define RBR_ELAST_BUF       0x0003      /* Receive Elasticity Buffer         */
+/* MII Interrupt Status Register 2 */
+#define MISR2_EEE_ERR_INT   0x8000      /* Energy Effic. ETH Error Interrupt */
+#define MISR2_ANEG_ERR_INT  0x4000      /* Auto Negotiation Error Interrupt  */
+#define MISR2_PAGE_REC_INT  0x2000      /* Page Received Interrupt           */
+#define MISR2_LP_FIFO_INT   0x1000      /* Loopb FIFO OF/UF Interrupt        */
+#define MISR2_MDI_CR_INT    0x0800      /* MDI/MDIX Status Change Interrupt  */
+#define MISR2_SLEEP_INT     0x0400      /* Sleep Mode Event Interrupt        */
+#define MISR2_INV_POL_INT   0x0200      /* Inverted Polarity Interrupt       */
+#define MISR2_JABBER_INT    0x0100      /* Jabber Detect Interrupt           */
+#define MISR2_EEE_ERR_EN    0x0080      /* Energy Effic. ETH Error Int.Enable*/
+#define MISR2_ANEG_ERR_EN   0x0040      /* Auto Neg. Error Int.Enable        */
+#define MISR2_PAGE_REC_EN   0x0020      /* Page Received Int.Enable          */
+#define MISR2_LP_FIFO_EN    0x0010      /* Loopb FIFO OF/UF Int.Enable       */
+#define MISR2_MDI_CR_EN     0x0008      /* MDI/MDIX Status Change Int.Enable */
+#define MISR2_SLEEP_EN      0x0004      /* Sleep Mode Event Int.Enable       */
+#define MISR2_INV_POL_EN    0x0002      /* Inverted Polarity Int.Enable      */
+#define MISR2_JABBER_EN     0x0001      /* Jabber Detect Int.Enable          */
 
 /* LED Direct Control Register */
-#define LEDCR_DRV_SPDLED    0x0020      /* Drive SPDLED bit to LED_SPD output*/
-#define LEDCR_DRV_LNKLED    0x0010      /* Drive LNKLED bit to LED_LNK output*/
-#define LEDCR_DRV_ACTLED    0x0008      /* Drive ACTLED bit to LED_ACT output*/
-#define LEDCR_SPDLED        0x0004      /* Value to force on LED_SPD output  */
-#define LEDCR_LNKLED        0x0002      /* Value to force on LED_LNK output  */
-#define LEDCR_ACTLED        0x0001      /* Value to force on LED_ACT output  */
+#define LEDCR_BLINK_RATE    0x0600      /* LED Blinking Rate                 */
+#define LEDCR_LINK_POL      0x0080      /* LED Link Polarity                 */
+#define LEDCR_DRV_LINK_LED  0x0010      /* Drive Link LED Select             */
+#define LEDCR_LINK_LED_VAL  0x0002      /* Value to force on LED_LINK output */
 
 /* PHY Control Register */
 #define PHYCR_MDIX_EN       0x8000      /* Auto MDIX Enable                  */
 #define PHYCR_FORCE_MDIX    0x4000      /* Force MDIX                        */
 #define PHYCR_PAUSE_RX      0x2000      /* Pause Receive Negotiated          */
 #define PHYCR_PAUSE_TX      0x1000      /* Pause Transmit Negotiated         */
-#define PHYCR_BIST_FE       0x0800      /* BIST Force Error                  */
-#define PHYCR_PSR_15        0x0400      /* BIST Sequence select              */
-#define PHYCR_BIST_STATUS   0x0200      /* BIST Test Status                  */
-#define PHYCR_BIST_START    0x0100      /* BIST Start                        */
+#define PHYCR_MII_LINK      0x0800      /* MII Link Status                   */
 #define PHYCR_BP_STRETCH    0x0080      /* Bypass LED Stretching             */
-#define PHYCR_LED_CNFG      0x0060      /* LEDs Configuration                */
+#define PHYCR_LED_CNFG      0x0020      /* LEDs Configuration                */
 #define PHYCR_PHYADDR       0x001F      /* PHY Address for port              */
 
 /* 10Base-T Status/Control Register */
-#define BTSCR_10BT_SER      0x8000      /* 10Base-T Serial Mode              */
+#define BTSCR_REC_TH_EN     0x2000      /* Lower Receiver Threshold Enable   */
 #define BTSCR_SQUELCH       0x0E00      /* Squelch Configuration             */
-#define BTSCR_LOOPB10_DIS   0x0100      /* Loopback 10Base-T Disable         */
-#define BTSCR_LP_DIS        0x0080      /* Normal Link Pulse Disable         */
-#define BTSCR_FORCE_LNK10   0x0040      /* Force 10Mbs Good Link             */
+#define BTSCR_NLP_DIS       0x0080      /* Normal Link Pulse Disable         */
 #define BTSCR_POLARITY      0x0010      /* 10Mbs Polarity Status             */
-#define BTSCR_HEARTB_DIS    0x0002      /* Heartbeat Disable                 */
 #define BTSCR_JABBER_DIS    0x0001      /* Jabber Disable                    */
 
-/* CD Test and BIST Extensions Register */
-#define CDBR1_BIST_ERR_CNTR 0xFF00      /* BIST ERROR Counter                */
-#define CDBR1_BIST_CONT_MD  0x0020      /* Packet BIST Continuous Mode       */
-#define CDBR1_CDPATEN10     0x0010      /* CD Pattern Enable for 10Mbs       */
-#define CDBR1_10MEG_PAT_GAP 0x0004      /* Defines gap between data or NLP   */
-#define CDBR1_CDPATTSEL     0x0003      /* CD Pattern Select                 */
+//* BISCR Register */
+#define BISCR_REV_LOOPB     0x0010      /* Reverse loopback                  */
+#define BISCR_ANALOG_LOOPB  0x0008      /* Analog loopback                   */
+#define BISCR_DIGITAL_LOOPB 0x0004      /* Digital loopback (100Base-TX only)*/
+#define BISCR_PCS_OUT_LOOPB 0x0002      /* PCS output loopback               */
+#define BISCR_PCS_IN_LOOPB  0x0001      /* PCS input loopback (10Base-T only)*/
 
-/* Energy Detect Control */
-#define EDCR_ED_EN          0x8000      /* Energy Detect Enable              */
-#define EDCR_ED_AUTO_UP     0x4000      /* Energy Detect Automatic Power Up  */
-#define EDCR_ED_AUTO_DOWN   0x2000      /* Energy Detect Automatic Power Down*/
-#define EDCR_ED_MAN         0x1000      /* Energy Detect Manual Power Up/Down*/
-#define EDCR_ED_BURST_DIS   0x0800      /* Energy Detect Burst Disable       */
-#define EDCR_ED_PWR_STATE   0x0400      /* Energy Detect Power State         */
-#define EDCR_ED_ERR_MET     0x0200      /* Energy Detect Error Threshold Met */
-#define EDCR_ED_DATA_MET    0x0100      /* Energy Detect Data Threshold Met  */
-#define EDCR_ED_ERR_CNT     0x00F0      /* Energy Detect Error Threshold     */
-#define EDCR_ED_DATA_CNT    0x000F      /* Energy Detect Data Threshold      */
+/* PHYRCR Register */
+#define PHYRCR_HARD_RESET   0x8000      /* Software Hard Reset               */
+#define PHYRCR_DIG_RESET    0x4000      /* Digital Reset                     */
 
 /* PHY Driver State Flags */
 #define PHY_INIT            0x01U       /* Driver initialized                */

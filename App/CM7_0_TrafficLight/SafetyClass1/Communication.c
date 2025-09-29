@@ -34,7 +34,7 @@ static char             fault_info[512]    __attribute__((section("ram_shared"))
 static osEventFlagsId_t fault_inject_event __attribute__((section("ram_shared"))) = NULL;
 
 /* Thread stack located in RAM_COM */
-static uint64_t communication_init_thread_stack[1024/8];
+static uint64_t communication_init_thread_stack[4096/8];
 
 /* fault_inject_event event flags attributes */
 static const osEventFlagsAttr_t fault_inject_event_attr = {

@@ -17,8 +17,8 @@
  *
  * -----------------------------------------------------------------------
  *
- * $Date:        25. May 2018
- * $Revision:    V6.2
+ * $Date:        8. September 2025
+ * $Revision:    V1.0
  *
  * Driver:       Driver_ETH_PHYn (default: Driver_ETH_PHY0)
  * Project:      Ethernet Physical Layer Transceiver (PHY)
@@ -33,21 +33,13 @@
  * -------------------------------------------------------------------- */
 
 /* History:
- *  Version 6.2
- *    Updated for ARM compiler 6
- *  Version 6.1
- *    Added driver flow control flags
- *  Version 6.0
- *    Based on API V2.00
- *  Version 5.1
- *    Based on API V1.10 (namespace prefix ARM_ added)
- *  Version 5.0
+ *  Version 1.0
  *    Initial release
  */
 
 #include "PHY_DP83825I.h"
 
-#define ARM_ETH_PHY_DRV_VERSION ARM_DRIVER_VERSION_MAJOR_MINOR(6,2) /* driver version */
+#define ARM_ETH_PHY_DRV_VERSION ARM_DRIVER_VERSION_MAJOR_MINOR(1,0) /* driver version */
 
 
 #ifndef ETH_PHY_NUM
@@ -89,7 +81,9 @@ static ARM_DRIVER_VERSION GetVersion (void) {
 */
 static int32_t Initialize (ARM_ETH_PHY_Read_t fn_read, ARM_ETH_PHY_Write_t fn_write) {
 
-  if ((fn_read == NULL) || (fn_write == NULL)) { return ARM_DRIVER_ERROR_PARAMETER; }
+  if ((fn_read == NULL) || (fn_write == NULL)) {
+    return ARM_DRIVER_ERROR_PARAMETER;
+  }
 
   if ((PHY.flags & PHY_INIT) == 0U) {
     /* Register PHY read/write functions. */
@@ -98,8 +92,6 @@ static int32_t Initialize (ARM_ETH_PHY_Read_t fn_read, ARM_ETH_PHY_Write_t fn_wr
 
     PHY.bmcr   = 0U;
     PHY.flags  = PHY_INIT;
-    
-    PHY.reg_wr( ETH_PHY_ADDR, REG_PHYRCR, PHYRCR_SOFTWARE_HARD_RESET ) ;
   }
 
   return ARM_DRIVER_OK;
@@ -137,7 +129,7 @@ static int32_t PowerControl (ARM_POWER_STATE state) {
       }
 
       PHY.flags &= ~PHY_POWER;
-      PHY.bmcr   =  BMCR_POWER_DOWN;
+      PHY.bmcr   =  0; //BMCR_POWER_DOWN;
 
       return (PHY.reg_wr(ETH_PHY_ADDR, REG_BMCR, PHY.bmcr));
 
@@ -187,23 +179,20 @@ static int32_t PowerControl (ARM_POWER_STATE state) {
   \return      \ref execution_status
 */
 static int32_t SetInterface (uint32_t interface) {
-  uint16_t val;
 
-  if ((PHY.flags & PHY_POWER) == 0U) { return ARM_DRIVER_ERROR; }
+  if ((PHY.flags & PHY_POWER) == 0U) {
+    return ARM_DRIVER_ERROR;
+  }
 
+  /* This device supports RMII interface only */
   switch (interface) {
-    case ARM_ETH_INTERFACE_MII:
-      val = 0x0001;
-      break;
     case ARM_ETH_INTERFACE_RMII:
-      val = RBR_RMII_MODE | 0x0001;
       break;
     default:
       return ARM_DRIVER_ERROR_UNSUPPORTED;
   }
 
-  //return (PHY.reg_wr(ETH_PHY_ADDR, REG_RBR, val));
-  return (ARM_DRIVER_ERROR_UNSUPPORTED);
+  return ARM_DRIVER_OK;
 }
 
 /**
@@ -214,8 +203,11 @@ static int32_t SetInterface (uint32_t interface) {
 */
 static int32_t SetMode (uint32_t mode) {
   uint16_t val;
+  int32_t  retv;
 
-  if ((PHY.flags & PHY_POWER) == 0U) { return ARM_DRIVER_ERROR; }
+  if ((PHY.flags & PHY_POWER) == 0U) {
+    return ARM_DRIVER_ERROR;
+  }
 
   val = PHY.bmcr & BMCR_POWER_DOWN;
 
@@ -253,7 +245,12 @@ static int32_t SetMode (uint32_t mode) {
 
   PHY.bmcr = val;
 
-  return (PHY.reg_wr(ETH_PHY_ADDR, REG_BMCR, PHY.bmcr));
+  retv = PHY.reg_wr(ETH_PHY_ADDR, REG_BMCR, PHY.bmcr);
+  if (retv == ARM_DRIVER_OK) {
+    uint16_t biscr = (mode & ARM_ETH_PHY_LOOPBACK) ? BISCR_DIGITAL_LOOPB : 0U;
+    retv = PHY.reg_wr(ETH_PHY_ADDR, REG_BISCR, biscr);
+  }
+  return (retv);
 }
 
 /**

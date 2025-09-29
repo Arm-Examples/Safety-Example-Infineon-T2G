@@ -210,11 +210,11 @@ const cyhal_resource_inst_t CYBSP_ETH_TXD_1_obj =
 };
 #endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
 
-const cy_stc_gpio_pin_config_t ioss_0_port_19_pin_0_config =
+const cy_stc_gpio_pin_config_t CYBSP_ETH_RXD0_config =
 {
     .outVal = 0,
     .driveMode = CY_GPIO_DM_HIGHZ,
-    .hsiom = ioss_0_port_19_pin_0_HSIOM,
+    .hsiom = CYBSP_ETH_RXD0_HSIOM,
     .intEdge = CY_GPIO_INTR_DISABLE,
     .intMask = 0UL,
     .vtrip = CY_GPIO_VTRIP_CMOS,
@@ -228,19 +228,19 @@ const cy_stc_gpio_pin_config_t ioss_0_port_19_pin_0_config =
 };
 
 #if defined (CY_USING_HAL) || (CY_USING_HAL_LITE)
-const cyhal_resource_inst_t ioss_0_port_19_pin_0_obj =
+const cyhal_resource_inst_t CYBSP_ETH_RXD0_obj =
 {
     .type = CYHAL_RSC_GPIO,
-    .block_num = ioss_0_port_19_pin_0_PORT_NUM,
-    .channel_num = ioss_0_port_19_pin_0_PIN,
+    .block_num = CYBSP_ETH_RXD0_PORT_NUM,
+    .channel_num = CYBSP_ETH_RXD0_PIN,
 };
 #endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
 
-const cy_stc_gpio_pin_config_t ioss_0_port_19_pin_1_config =
+const cy_stc_gpio_pin_config_t CYBSP_ETH_RXD1_config =
 {
     .outVal = 0,
     .driveMode = CY_GPIO_DM_HIGHZ,
-    .hsiom = ioss_0_port_19_pin_1_HSIOM,
+    .hsiom = CYBSP_ETH_RXD1_HSIOM,
     .intEdge = CY_GPIO_INTR_DISABLE,
     .intMask = 0UL,
     .vtrip = CY_GPIO_VTRIP_CMOS,
@@ -254,11 +254,11 @@ const cy_stc_gpio_pin_config_t ioss_0_port_19_pin_1_config =
 };
 
 #if defined (CY_USING_HAL) || (CY_USING_HAL_LITE)
-const cyhal_resource_inst_t ioss_0_port_19_pin_1_obj =
+const cyhal_resource_inst_t CYBSP_ETH_RXD1_obj =
 {
     .type = CYHAL_RSC_GPIO,
-    .block_num = ioss_0_port_19_pin_1_PORT_NUM,
-    .channel_num = ioss_0_port_19_pin_1_PIN,
+    .block_num = CYBSP_ETH_RXD1_PORT_NUM,
+    .channel_num = CYBSP_ETH_RXD1_PIN,
 };
 #endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
 
@@ -635,8 +635,8 @@ void init_cycfg_pins(void)
     Cy_GPIO_Pin_Init(CYBSP_ETH_TX_CTL_PORT, CYBSP_ETH_TX_CTL_PIN, &CYBSP_ETH_TX_CTL_config);
     Cy_GPIO_Pin_Init(CYBSP_ETH_TXD_0_PORT, CYBSP_ETH_TXD_0_PIN, &CYBSP_ETH_TXD_0_config);
     Cy_GPIO_Pin_Init(CYBSP_ETH_TXD_1_PORT, CYBSP_ETH_TXD_1_PIN, &CYBSP_ETH_TXD_1_config);
-    Cy_GPIO_Pin_Init(ioss_0_port_19_pin_0_PORT, ioss_0_port_19_pin_0_PIN, &ioss_0_port_19_pin_0_config);
-    Cy_GPIO_Pin_Init(ioss_0_port_19_pin_1_PORT, ioss_0_port_19_pin_1_PIN, &ioss_0_port_19_pin_1_config);
+    Cy_GPIO_Pin_Init(CYBSP_ETH_RXD0_PORT, CYBSP_ETH_RXD0_PIN, &CYBSP_ETH_RXD0_config);
+    Cy_GPIO_Pin_Init(CYBSP_ETH_RXD1_PORT, CYBSP_ETH_RXD1_PIN, &CYBSP_ETH_RXD1_config);
     Cy_GPIO_Pin_Init(CYBSP_ECO_IN_PORT, CYBSP_ECO_IN_PIN, &CYBSP_ECO_IN_config);
     Cy_GPIO_Pin_Init(CYBSP_ECO_OUT_PORT, CYBSP_ECO_OUT_PIN, &CYBSP_ECO_OUT_config);
     Cy_GPIO_Pin_Init(CYBSP_ETH_RX_CTL_PORT, CYBSP_ETH_RX_CTL_PIN, &CYBSP_ETH_RX_CTL_config);
@@ -660,8 +660,8 @@ void reserve_cycfg_pins(void)
     cyhal_hwmgr_reserve(&CYBSP_ETH_TX_CTL_obj);
     cyhal_hwmgr_reserve(&CYBSP_ETH_TXD_0_obj);
     cyhal_hwmgr_reserve(&CYBSP_ETH_TXD_1_obj);
-    cyhal_hwmgr_reserve(&ioss_0_port_19_pin_0_obj);
-    cyhal_hwmgr_reserve(&ioss_0_port_19_pin_1_obj);
+    cyhal_hwmgr_reserve(&CYBSP_ETH_RXD0_obj);
+    cyhal_hwmgr_reserve(&CYBSP_ETH_RXD1_obj);
     cyhal_hwmgr_reserve(&CYBSP_WCO_IN_obj);
     cyhal_hwmgr_reserve(&CYBSP_WCO_OUT_obj);
     cyhal_hwmgr_reserve(&CYBSP_ECO_IN_obj);

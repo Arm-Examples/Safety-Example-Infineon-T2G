@@ -251,44 +251,46 @@ extern "C" {
 #define CYBSP_ETH_TXD_3 (P18_7)
 #endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
 
-#define ioss_0_port_19_pin_0_ENABLED 1U
-#define ioss_0_port_19_pin_0_PORT GPIO_PRT19
-#define ioss_0_port_19_pin_0_PORT_NUM 19U
-#define ioss_0_port_19_pin_0_PIN 0U
-#define ioss_0_port_19_pin_0_NUM 0U
-#define ioss_0_port_19_pin_0_DRIVEMODE CY_GPIO_DM_HIGHZ
-#define ioss_0_port_19_pin_0_INIT_DRIVESTATE 0
+#define CYBSP_ETH_RXD0_ENABLED 1U
+#define CYBSP_ETH_RXD0_PORT GPIO_PRT19
+#define CYBSP_ETH_RXD0_PORT_NUM 19U
+#define CYBSP_ETH_RXD0_PIN 0U
+#define CYBSP_ETH_RXD0_NUM 0U
+#define CYBSP_ETH_RXD0_DRIVEMODE CY_GPIO_DM_HIGHZ
+#define CYBSP_ETH_RXD0_INIT_DRIVESTATE 0
 #ifndef ioss_0_port_19_pin_0_HSIOM
     #define ioss_0_port_19_pin_0_HSIOM HSIOM_SEL_GPIO
 #endif
-#define ioss_0_port_19_pin_0_IRQ ioss_interrupts_gpio_dpslp_19_IRQn
+#define CYBSP_ETH_RXD0_HSIOM ioss_0_port_19_pin_0_HSIOM
+#define CYBSP_ETH_RXD0_IRQ ioss_interrupts_gpio_dpslp_19_IRQn
 
 #if defined (CY_USING_HAL) || (CY_USING_HAL_LITE)
-#define ioss_0_port_19_pin_0_HAL_PORT_PIN P19_0
-#define ioss_0_port_19_pin_0 P19_0
-#define ioss_0_port_19_pin_0_HAL_IRQ CYHAL_GPIO_IRQ_NONE
-#define ioss_0_port_19_pin_0_HAL_DIR CYHAL_GPIO_DIR_INPUT 
-#define ioss_0_port_19_pin_0_HAL_DRIVEMODE CYHAL_GPIO_DRIVE_NONE
+#define CYBSP_ETH_RXD0_HAL_PORT_PIN P19_0
+#define CYBSP_ETH_RXD0 P19_0
+#define CYBSP_ETH_RXD0_HAL_IRQ CYHAL_GPIO_IRQ_NONE
+#define CYBSP_ETH_RXD0_HAL_DIR CYHAL_GPIO_DIR_INPUT 
+#define CYBSP_ETH_RXD0_HAL_DRIVEMODE CYHAL_GPIO_DRIVE_NONE
 #endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
 
-#define ioss_0_port_19_pin_1_ENABLED 1U
-#define ioss_0_port_19_pin_1_PORT GPIO_PRT19
-#define ioss_0_port_19_pin_1_PORT_NUM 19U
-#define ioss_0_port_19_pin_1_PIN 1U
-#define ioss_0_port_19_pin_1_NUM 1U
-#define ioss_0_port_19_pin_1_DRIVEMODE CY_GPIO_DM_HIGHZ
-#define ioss_0_port_19_pin_1_INIT_DRIVESTATE 0
+#define CYBSP_ETH_RXD1_ENABLED 1U
+#define CYBSP_ETH_RXD1_PORT GPIO_PRT19
+#define CYBSP_ETH_RXD1_PORT_NUM 19U
+#define CYBSP_ETH_RXD1_PIN 1U
+#define CYBSP_ETH_RXD1_NUM 1U
+#define CYBSP_ETH_RXD1_DRIVEMODE CY_GPIO_DM_HIGHZ
+#define CYBSP_ETH_RXD1_INIT_DRIVESTATE 0
 #ifndef ioss_0_port_19_pin_1_HSIOM
     #define ioss_0_port_19_pin_1_HSIOM HSIOM_SEL_GPIO
 #endif
-#define ioss_0_port_19_pin_1_IRQ ioss_interrupts_gpio_dpslp_19_IRQn
+#define CYBSP_ETH_RXD1_HSIOM ioss_0_port_19_pin_1_HSIOM
+#define CYBSP_ETH_RXD1_IRQ ioss_interrupts_gpio_dpslp_19_IRQn
 
 #if defined (CY_USING_HAL) || (CY_USING_HAL_LITE)
-#define ioss_0_port_19_pin_1_HAL_PORT_PIN P19_1
-#define ioss_0_port_19_pin_1 P19_1
-#define ioss_0_port_19_pin_1_HAL_IRQ CYHAL_GPIO_IRQ_NONE
-#define ioss_0_port_19_pin_1_HAL_DIR CYHAL_GPIO_DIR_INPUT 
-#define ioss_0_port_19_pin_1_HAL_DRIVEMODE CYHAL_GPIO_DRIVE_NONE
+#define CYBSP_ETH_RXD1_HAL_PORT_PIN P19_1
+#define CYBSP_ETH_RXD1 P19_1
+#define CYBSP_ETH_RXD1_HAL_IRQ CYHAL_GPIO_IRQ_NONE
+#define CYBSP_ETH_RXD1_HAL_DIR CYHAL_GPIO_DIR_INPUT 
+#define CYBSP_ETH_RXD1_HAL_DRIVEMODE CYHAL_GPIO_DRIVE_NONE
 #define CYBSP_ETH_RXD_0 (P20_0)
 #define CYBSP_ETH_RXD_1 (P20_1)
 #define CYBSP_ETH_RXD_2 (P20_2)
@@ -723,16 +725,16 @@ extern const cy_stc_gpio_pin_config_t CYBSP_ETH_TXD_1_config;
 extern const cyhal_resource_inst_t CYBSP_ETH_TXD_1_obj;
 #endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
 
-extern const cy_stc_gpio_pin_config_t ioss_0_port_19_pin_0_config;
+extern const cy_stc_gpio_pin_config_t CYBSP_ETH_RXD0_config;
 
 #if defined (CY_USING_HAL) || (CY_USING_HAL_LITE)
-extern const cyhal_resource_inst_t ioss_0_port_19_pin_0_obj;
+extern const cyhal_resource_inst_t CYBSP_ETH_RXD0_obj;
 #endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
 
-extern const cy_stc_gpio_pin_config_t ioss_0_port_19_pin_1_config;
+extern const cy_stc_gpio_pin_config_t CYBSP_ETH_RXD1_config;
 
 #if defined (CY_USING_HAL) || (CY_USING_HAL_LITE)
-extern const cyhal_resource_inst_t ioss_0_port_19_pin_1_obj;
+extern const cyhal_resource_inst_t CYBSP_ETH_RXD1_obj;
 #endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
 
 extern const cy_stc_gpio_pin_config_t CYBSP_WCO_IN_config;
