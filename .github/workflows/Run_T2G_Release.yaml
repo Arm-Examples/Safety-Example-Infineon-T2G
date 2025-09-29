@@ -41,8 +41,8 @@ jobs:
     - name: Add the Infineon.T2G-B-H_DFP
       run: |
         cd ~
-        cpackget add ARM::CMSIS@6.2.0
-        cpackget add Infineon::T2G-B-H_DFP@1.2.1
+        cpackget add -F ARM::CMSIS@6.2.0
+        cpackget add -F Infineon::T2G-B-H_DFP@1.2.1
         # cpackget add -a -F ./PACK/.Download/Infineon.T2G-B-H_DFP.1.2.1.pack
 
     - name: Download Build Artifact
