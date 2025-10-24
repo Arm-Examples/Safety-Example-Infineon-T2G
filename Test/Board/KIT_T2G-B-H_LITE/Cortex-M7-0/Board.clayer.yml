@@ -12,8 +12,8 @@ layer:
         name: Board
 
   packs:
-    - pack: Infineon::T2G-B-H_DFP@^1.2.0
-    - pack: Infineon::KIT_T2G-B-H_LITE_BSP@^1.1.0
+    - pack: Infineon::T2G-B-H_DFP@^1.2.1
+    - pack: Infineon::KIT_T2G-B-H_LITE_BSP@^1.2.1
     - pack: ARM::CMSIS@^6.2.0
     - pack: ARM::CMSIS-Compiler@^2.1.0
 
