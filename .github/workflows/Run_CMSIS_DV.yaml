@@ -35,6 +35,6 @@ jobs:
         path: ./artifact
 
     - name: Execute the CMSIS_Driver_Validation@Release
-      working-directory: ./artifact/out
+      working-directory: ./artifact/Boot/T2G-Kit/Release
       run: | 
          pyocd load --probe cmsisdap: --cbuild-run T2G+T2G-Kit.cbuild-run.yml
