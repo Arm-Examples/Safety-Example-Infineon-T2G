@@ -32,9 +32,9 @@ jobs:
       with:
         workflow: Build_CMSIS_DV.yaml
         name: CMSIS_Driver_Validation@Release
-        path: ./artifact
+        path: ./Test/artifact
 
     - name: Execute the CMSIS_Driver_Validation@Release
-      working-directory: ./artifact
+      working-directory: ./Test/artifact
       run: | 
          pyocd load --probe cmsisdap: --cbuild-run CMSIS_DV+T2G-Kit.cbuild-run.yml
