@@ -21,7 +21,7 @@ on:
   
 jobs:
   CI:
-    runs-on: [self-hosted, rsp-p3-01]
+    runs-on: [self-hosted, rsp-p5-01]
 
     steps:
     - name: Checkout repository
