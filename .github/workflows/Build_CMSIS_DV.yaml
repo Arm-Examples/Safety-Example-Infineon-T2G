@@ -25,7 +25,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
 
     - name: Activate vcpkg
       uses: ARM-software/cmsis-actions/vcpkg@v1
@@ -48,7 +48,7 @@ jobs:
         cpackget add -f packs.txt --force-reinstall --agree-embedded-license
 
     - name: Cache downloaded packs
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         key: T2G-Kit
         path: /home/runner/.cache/arm/packs/.Download
@@ -61,13 +61,14 @@ jobs:
         cd /home/runner/.cache/arm/packs/Infineon/T2G-B-H_DFP/1.2.1/Libraries/mtb-pdl-cat1/drivers/source/
         git apply cy_ethif.c.patch
 
+
     - name: Build for target-set T2G-Kit@Release with AC6 Compiler
       working-directory: ./Test
       run: |
         cbuild CMSIS_DV.csolution.yml --active T2G-Kit@Release
 
     - name: Upload output for context T2G.Release+T2G-Kit
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: CMSIS_Driver_Validation@Release
         path: |

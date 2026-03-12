@@ -25,10 +25,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Download Build Artifact
-      uses: dawidd6/action-download-artifact@v11
+      uses: dawidd6/action-download-artifact@v16
       with:
         workflow: Build_CMSIS_DV.yaml
         name: CMSIS_Driver_Validation@Release
@@ -37,4 +37,4 @@ jobs:
     - name: Execute the CMSIS_Driver_Validation@Release
       working-directory: ./Test/artifact
       run: | 
-         pyocd load --probe cmsisdap: --cbuild-run CMSIS_DV+T2G-Kit.cbuild-run.yml
+         pyocd load --cbuild-run CMSIS_DV+T2G-Kit.cbuild-run.yml
