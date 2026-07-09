@@ -37,4 +37,7 @@ jobs:
     - name: Execute the CMSIS_Driver_Validation@Release
       working-directory: ./Test/artifact
       run: | 
-         pyocd load --uid 171C089E02272400 --cbuild-run CMSIS_DV+T2G-Kit.cbuild-run.yml
+         # Cortex-M4
+         # pyocd load --uid 171C089E02272400 --cbuild-run CMSIS_DV+T2G-Kit.cbuild-run.yml
+         # Cortex-M7
+         pyocd load --uid 0D18149E02272400 --cbuild-run CMSIS_DV+T2G-Kit.cbuild-run.yml
