@@ -53,14 +53,6 @@ jobs:
         key: T2G-Kit
         path: /home/runner/.cache/arm/packs/.Download
 
-    - name: Apply patch to T2G-B-H_DFP pack
-      working-directory: ./
-      run: |
-        chmod -R u+rw /home/runner/.cache/arm/packs
-        cp -f ./Patch/cy_ethif.c.patch /home/runner/.cache/arm/packs/Infineon/T2G-B-H_DFP/1.2.1/Libraries/mtb-pdl-cat1/drivers/source/
-        cd /home/runner/.cache/arm/packs/Infineon/T2G-B-H_DFP/1.2.1/Libraries/mtb-pdl-cat1/drivers/source/
-        git apply cy_ethif.c.patch
-
     - name: Build for target-set T2G-Kit@Release with AC6 Compiler
       working-directory: ./App
       run: |
