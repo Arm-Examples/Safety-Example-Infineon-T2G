@@ -41,9 +41,6 @@
 #include "cy_ethif.h"
 #include "cy_sysint.h"
 
-/* Needed for Cadence driver interfacing */
-extern void cy_ethif_privatedata;
-
 /* Receive/transmit checksum offload enabled by default */
 #ifndef EMAC_CHECKSUM_OFFLOAD
   #define EMAC_CHECKSUM_OFFLOAD 1
@@ -200,7 +197,7 @@ static int32_t Initialize (ARM_ETH_MAC_SignalEvent_t cb_event) {
   /* Register CEDI driver API and instance */
   emac.base     = ETH0;
   emac.drv      = CEDI_GetInstance ();
-  emac.pd       = &cy_ethif_privatedata;
+  emac.pd       = Cy_ETHIF_GetPrivateData (emac.base);
 
   emac.flags    = EMAC_FLAG_INIT;
 
