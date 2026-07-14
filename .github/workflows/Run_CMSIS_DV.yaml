@@ -25,10 +25,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
 
     - name: Download Build Artifact
-      uses: dawidd6/action-download-artifact@v19
+      uses: dawidd6/action-download-artifact@v21
       with:
         workflow: Build_CMSIS_DV.yaml
         name: CMSIS_Driver_Validation@Release
