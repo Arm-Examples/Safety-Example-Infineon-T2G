@@ -71,7 +71,7 @@ The `T2G.csolution.yml` file contains the following projects:
 
 - **Web Interface**:  
     - Connect the board to your LAN.  
-    - Open a browser and navigate to [http://traffic_light/](http://traffic_light/) or [http://<board_ip_address>/](http://<board_ip_address>/).
+    - Open a browser and navigate to [http://traffic-light/](http://traffic-light/) or [http://<board_ip_address>/](http://<board_ip_address>/).
     - Monitor traffic status, view faults, and inject errors (data error, memory access, watchdog, fatal).
 
 - **Safe Mode**: On error, the system transitions to blinking yellow and reports fault details via the web UI.
