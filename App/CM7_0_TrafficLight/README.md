@@ -8,7 +8,7 @@ The example runs on the **Infineon KIT_T2G-B-H_LITE** evaluation board (device: 
 
 To access the Web user interface, open a browser and navigate to:
 
-- `http://traffic_light/` or
+- `http://traffic-light/` or
 - `http://<board_IP_address>`
 
 ## Recovery Mechanisms
